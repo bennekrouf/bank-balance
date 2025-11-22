@@ -1,233 +1,355 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#1a1a1a">
-    <title>Solde du compte</title>
-    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQmFucXVlIiwic2hvcnRfbmFtZSI6IkJhbnF1ZSIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTFhIiwidGhlbWVfY29sb3IiOiIjMWExYTFhIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgMTAwIDEwMCclM0UlM0NyZWN0IHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyBmaWxsPSclMjMxYTFhMWEnLyUzRSUzQ3RleHQgeD0nNTAlJyB5PSc1MCUnIGZvbnQtc2l6ZT0nNDAnIGZpbGw9JyUyM2ZmZicgdGV4dC1hbmNob3I9J21pZGRsZScgZHk9Jy4zZW0nJTNFQiUzQy90ZXh0JTNFJTNDL3N2ZyUzRSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIn1dfQ==">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#e60000">
+  <title>UBS Mobile Banking</title>
+  <link rel="apple-touch-icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e60000'/%3E%3Ctext x='50%25' y='50%25' font-size='45' font-weight='bold' fill='white' font-family='Arial' text-anchor='middle' dy='.35em'%3EUBS%3C/text%3E%3C/svg%3E">
+  <link rel="manifest"
+    href="data:application/json;base64,eyJuYW1lIjoiVUJTIE1vYmlsZSIsInNob3J0X25hbWUiOiJVQlMiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2U2MDAwMCIsInRoZW1lX2NvbG9yIjoiI2U2MDAwMCIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDEwMCAxMDAnJTNFJTNDcmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgZmlsbD0nJTIzZTYwMDAwJy8lM0UlM0N0ZXh0IHg9JzUwJTI1JyB5PSc1MCUyNScgZm9udC1zaXplPSc0NScgZm9udC13ZWlnaHQ9J2JvbGQnIGZpbGw9J3doaXRlJyBmb250LWZhbWlseT0nQXJpYWwnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGR5PScuMzVlbSclM0VVQlMlM0MvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        :root {
-            --bg: #ffffff;
-            --surface: #f5f5f5;
-            --text: #1a1a1a;
-            --text-secondary: #666666;
-            --accent: #0066cc;
-            --border: #e0e0e0;
-        }
+    :root {
+      --bg: #ffffff;
+      --surface: #f8f8f8;
+      --text: #1a1a1a;
+      --text-secondary: #666666;
+      --accent: #e60000;
+      --border: #e0e0e0;
+    }
 
-        body.dark {
-            --bg: #1a1a1a;
-            --surface: #2d2d2d;
-            --text: #ffffff;
-            --text-secondary: #b0b0b0;
-            --accent: #4d94ff;
-            --border: #404040;
-        }
+    body.dark {
+      --bg: #1a1a1a;
+      --surface: #2d2d2d;
+      --text: #ffffff;
+      --text-secondary: #b0b0b0;
+      --accent: #ff1a1a;
+      --border: #404040;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            transition: background 0.3s, color 0.3s;
-        }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 480px;
-        }
+    .container {
+      width: 100%;
+      max-width: 480px;
+    }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
 
-        .logo {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--accent);
-        }
+    .header-actions {
+      display: flex;
+      gap: 16px;
+    }
 
-        .close-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 28px;
-            cursor: pointer;
-            padding: 0;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: color 0.2s;
-        }
+    .logo {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--accent);
+    }
 
-        .close-btn:hover {
-            color: var(--text);
-        }
+    .icon-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+      border-radius: 8px;
+    }
 
-        .card {
-            background: var(--surface);
-            border-radius: 16px;
-            padding: 32px;
-            border: 1px solid var(--border);
-            transition: background 0.3s, border-color 0.3s;
-        }
+    .icon-btn:hover {
+      color: var(--text);
+      background: var(--surface);
+    }
 
-        .account-type {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+    .card {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      transition: background 0.3s, border-color 0.3s;
+    }
 
-        .account-number {
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            font-family: 'Courier New', monospace;
-        }
+    .account-type {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-        .balance-label {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
+    .account-number {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      font-family: 'Courier New', monospace;
+    }
 
-        .balance-amount {
-            font-size: 48px;
-            font-weight: 300;
-            color: var(--text);
-            margin-bottom: 4px;
-            font-variant-numeric: tabular-nums;
-        }
+    .balance-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
 
-        .currency {
-            font-size: 24px;
-            color: var(--text-secondary);
-            margin-left: 8px;
-        }
+    .balance-amount {
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 4px;
+      font-variant-numeric: tabular-nums;
+    }
 
-        .last-update {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 24px;
-            text-align: right;
-        }
+    .currency {
+      font-size: 24px;
+      color: var(--text-secondary);
+      margin-left: 8px;
+    }
 
-        .theme-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 20px;
-            transition: all 0.3s;
-        }
+    .last-update {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 24px;
+      text-align: right;
+    }
 
-        .theme-toggle:hover {
-            transform: scale(1.1);
-        }
+    .footer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 32px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
 
-        @media (max-width: 480px) {
-            .balance-amount {
-                font-size: 36px;
-            }
-            .currency {
-                font-size: 18px;
-            }
-        }
-    </style>
+    .footer-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 12px;
+      transition: color 0.2s;
+      font-size: 12px;
+    }
+
+    .footer-btn.active {
+      color: var(--accent);
+    }
+
+    .footer-btn:hover {
+      color: var(--text);
+    }
+
+    .footer-btn.active:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: all 0.3s;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 480px) {
+      .balance-amount {
+        font-size: 36px;
+      }
+
+      .currency {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">BANQUE</div>
-            <button class="close-btn" onclick="closeApp()">×</button>
-        </div>
-
-        <div class="card">
-            <div class="account-type">Compte Courant</div>
-            <div class="account-number">CH93 0076 2011 6238 5295 7</div>
-            
-            <div class="balance-label">Solde disponible</div>
-            <div>
-                <span class="balance-amount" id="balance">12,450.75</span>
-                <span class="currency">CHF</span>
-            </div>
-
-            <div class="last-update" id="lastUpdate"></div>
-        </div>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <svg width="60" height="24" viewBox="0 0 60 24" xmlns="http://www.w3.org/2000/svg">
+          <rect width="60" height="24" fill="var(--accent)" rx="2" />
+          <text x="30" y="17" font-size="14" font-weight="bold" fill="white" font-family="Arial, sans-serif"
+            text-anchor="middle">UBS</text>
+        </svg>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" onclick="showNotifications()">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10 2C8.34315 2 7 3.34315 7 5V5.58579C7 6.11622 6.78929 6.62493 6.41421 7L4.58579 8.82843C4.21071 9.20351 4 9.71222 4 10.2426V14C4 15.1046 4.89543 16 6 16H14C15.1046 16 16 15.1046 16 14V10.2426C16 9.71222 15.7893 9.20351 15.4142 8.82843L13.5858 7C13.2107 6.62493 13 6.11622 13 5.58579V5C13 3.34315 11.6569 2 10 2Z"
+              stroke="currentColor" stroke-width="1.5" />
+            <path d="M8 16V17C8 18.1046 8.89543 19 10 19C11.1046 19 12 18.1046 12 17V16" stroke="currentColor"
+              stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button class="icon-btn" onclick="showMenu()">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="10" cy="8" r="2.5" stroke="currentColor" stroke-width="1.5" />
+            <path d="M5 15.5C5.5 13.5 7.5 12 10 12C12.5 12 14.5 13.5 15 15.5" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <button class="theme-toggle" onclick="toggleTheme()">
-        <span id="themeIcon">🌙</span>
-    </button>
+    <div class="card">
+      <div class="account-type">UBS Personal Account</div>
+      <div class="account-number">CH93 0024 3243 6578 9401 K</div>
 
-    <script>
-        function closeApp() {
-            if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
-                window.location.href = 'about:blank';
-            } else {
-                window.close();
-                setTimeout(() => {
-                    if (!window.closed) {
-                        document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;color:var(--text)">Vous pouvez fermer cet onglet</div>';
-                    }
-                }, 100);
-            }
-        }
+      <div class="balance-label">Solde disponible</div>
+      <div>
+        <span class="balance-amount" id="balance">147,850.40</span>
+        <span class="currency">CHF</span>
+      </div>
 
-        function toggleTheme() {
-            document.body.classList.toggle('dark');
-            const isDark = document.body.classList.contains('dark');
-            document.getElementById('themeIcon').textContent = isDark ? '☀️' : '🌙';
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
+      <div class="last-update" id="lastUpdate"></div>
+    </div>
 
-        function updateTimestamp() {
-            const now = new Date();
-            const formatted = now.toLocaleString('fr-CH', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            document.getElementById('lastUpdate').textContent = `Mis à jour: ${formatted}`;
-        }
+    <div class="footer">
+      <button class="footer-btn active">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>Accueil</span>
+      </button>
+      <button class="footer-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16 4H18C18.5304 4 19.0391 4.21071 19.4142 4.58579C19.7893 4.96086 20 5.46957 20 6V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58579 21.4142C4.21071 21.0391 4 20.5304 4 20V6C4 5.46957 4.21071 4.96086 4.58579 4.58579C4.96086 4.21071 5.46957 4 6 4H8"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M15 2H9C8.44772 2 8 2.44772 8 3V5C8 5.55228 8.44772 6 9 6H15C15.5523 6 16 5.55228 16 5V3C16 2.44772 15.5523 2 15 2Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M9 12H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path d="M9 16H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <span>Transactions</span>
+      </button>
+      <button class="footer-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span>Services</span>
+      </button>
+      <button class="footer-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+          <path
+            d="M19.4 15C19.1277 15.6171 18.7583 16.1936 18.3 16.71L19.5 18.5L18.5 19.5L16.71 18.3C16.1936 18.7583 15.6171 19.1277 15 19.4V21H13V19.4C12.3829 19.1277 11.8064 18.7583 11.29 18.3L9.5 19.5L8.5 18.5L9.7 16.71C9.24167 16.1936 8.87233 15.6171 8.6 15H7V13H8.6C8.87233 12.3829 9.24167 11.8064 9.7 11.29L8.5 9.5L9.5 8.5L11.29 9.7C11.8064 9.24167 12.3829 8.87233 13 8.6V7H15V8.6C15.6171 8.87233 16.1936 9.24167 16.71 9.7L18.5 8.5L19.5 9.5L18.3 11.29C18.7583 11.8064 19.1277 12.3829 19.4 13H21V15H19.4Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>Plus</span>
+      </button>
+    </div>
+  </div>
 
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.body.classList.add('dark');
-            document.getElementById('themeIcon').textContent = '☀️';
-        }
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <span id="themeIcon">🌙</span>
+  </button>
 
-        updateTimestamp();
-    </script>
+  <script>
+    function showNotifications() {
+      // Placeholder for notifications
+    }
+
+    function showMenu() {
+      // Placeholder for menu
+    }
+
+    function closeApp() {
+      if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+        window.location.href = 'about:blank';
+      } else {
+        window.close();
+        setTimeout(() => {
+          if (!window.closed) {
+            document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;color:var(--text)">Vous pouvez fermer cet onglet</div>';
+          }
+        }, 100);
+      }
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      document.getElementById('themeIcon').textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    function updateTimestamp() {
+      const now = new Date();
+      const formatted = now.toLocaleString('fr-CH', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      document.getElementById('lastUpdate').textContent = `Mis à jour: ${formatted}`;
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.body.classList.add('dark');
+      document.getElementById('themeIcon').textContent = '☀️';
+    }
+
+    updateTimestamp();
+  </script>
 </body>
+
 </html>
